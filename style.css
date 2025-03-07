@@ -1,0 +1,208 @@
+*, *::before, *::after {
+    box-sizing:border-box;
+}
+
+:root{
+    --huid:#FDD6B5;
+    --details:#EFC39E;
+    --zonnebrildetail:#FF7C7C;
+    --haarvoor:#55380D;
+    --haarachter:#2C1D08;
+}
+
+body{
+    height:100dvh;
+    margin:0;
+    display:grid;
+    place-items:center;
+    
+    background-color:rgb(205, 227, 253);
+  }
+
+
+
+
+  h1 oorl{
+    position: absolute;
+    background-color: var(--details);
+    border-radius:50%;
+    width:13vmin;
+    height: 13vmin;
+    left: -9vmin;
+    z-index: -1;
+  }
+
+  h1 oorr{
+    position: absolute;
+    background-color: var(--details);
+    border-radius:50%;
+    width:13vmin;
+    height: 13vmin;
+    left: 35vmin;
+    z-index: -1;
+  }
+
+  /* hoofd */
+
+  h1 {
+    position: absolute;
+    background-color: var(--huid);
+    box-shadow: inset -11px -16px 35px 0px #ba8b66;
+    border-radius:50%;
+    width:40vmin;
+    aspect-ratio:7/9;
+    display:grid;
+    justify-content:center;
+    place-items:center;
+    align-content:center;
+
+    transform-style: preserve-3d;
+  }
+
+  /* haar */
+  section:nth-of-type(1) {
+    transform-style: preserve-3d;
+
+    display:grid;
+    /* place-content:center; */
+    place-items: center;
+  }
+
+  section:nth-of-type(1) p{
+    display: block;
+    position: absolute;
+    /* left:50%; */
+    /* top:50%; */
+    /* translate: -50% -50%; */
+    height:80vmin;
+    width: 50vmin;
+    /* z-index: -1; */
+    background-color: var(--haarachter);
+    border-radius: 48%;
+    transform: translateY(17%) rotate(45deg) translateZ(-1em);
+    }
+
+    section:nth-of-type(1) p:nth-of-type(2){
+      display: block;
+      position: absolute;
+      /* left:50%; */
+      /* top:50%; */
+      /* translate: -50% -50%; */
+      height:80vmin;
+      width: 50vmin;
+      /* z-index: -1; */
+      background-color: var(--haarachter);
+      border-radius: 48%;
+      transform: translateY(17%) rotate(135deg) translateZ(-1em);
+      }
+
+      section:nth-of-type(2){
+        display: block;
+        position: absolute;
+        left:80%;
+        top:12%;
+        translate: -50% -50%;
+        height:38vmin;
+        width: 23vmin;
+        background-color: var(--haarvoor);
+        border-radius: 48%;
+        transform: rotate(140deg);
+      }
+
+      section:nth-of-type(3){
+        display: block;
+        position: absolute;
+        left:23%;
+        top:15%;
+        translate: -50% -50%;
+        height:38vmin;
+        width: 23vmin;
+        background-color: var(--haarvoor);
+        border-radius: 48%;
+        transform: rotate(40deg);
+      }
+
+
+
+
+ 
+/* zonnebril */
+  h1 ul{
+    margin:0;
+    padding:0;
+    list-style-type:"";
+    display:flex;
+    width:43vmin;
+    z-index: 2;
+  }
+
+  h1 li{
+    
+    
+    border-radius:50%;
+    flex-basis:50%;
+    aspect-ratio:1;
+    border: 2.5vmin solid #FF7C7C;
+    
+    background-image: linear-gradient(
+			45deg,
+			black 40%,
+			silver 0 43%,
+			black 0 48%,
+			silver 0 54%,
+			black 0
+		);
+	
+	border-radius:50%;
+	
+	background-position:left bottom;
+	
+	background-size: 300% 300%;
+	
+	animation-name:reflectie;
+	animation-duration:2s;
+	animation-iteration-count:infinite;
+	animation-timing-function:linear;
+}
+
+@keyframes reflectie {
+	0% {
+		background-position:left bottom;
+	}
+	100% {
+		background-position:right top;
+	}
+}
+
+
+  
+
+  /* li:hover{
+    transition: all 0.5s;
+    /* background-image: linear-gradient(58deg, rgba(0,0,0,1) 27%, rgba(159,159,159,1) 27%, rgba(159,159,159,1) 40%, rgba(0,0,0,1) 40%, rgba(0,0,0,1) 62%, rgba(159,159,159,1) 62%, rgba(159,159,159,1) 71%, rgba(0,0,0,1) 71%); */
+  
+  
+
+  neus{
+    display:block;
+    background-color: var(--details);
+    /* box-shadow: inset -11px -16px 35px 0px rgb(215, 183, 134); */
+    border-radius:50%;
+    width:20%;
+    aspect-ratio:3/2;
+
+    position:absolute;
+
+    translate: 0 8vmin;
+  }
+
+  mond{
+    display: block;
+    position: absolute;
+    background-color: var(--haarachter);
+    width: 11vmin;
+    height: 3.5vmin;
+    border-radius: 20px 20px 120px 120px;
+    translate: 0 16vmin;
+    transform: rotate(-5deg);
+  }
