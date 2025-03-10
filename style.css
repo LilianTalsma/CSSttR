@@ -16,13 +16,12 @@ body{
     display:grid;
     place-items:center;
     
-    background-color:rgb(205, 227, 253);
-  }
+    background: radial-gradient(ellipse 55% 48% at 47% 81%, #eea2a2 0%,#bbc1bf 19%,#57c6e1 42%,#b49fda 79%,#7ac5d8 100%)  }
 
 
 
 
-  h1 oorl{
+  span oorl{
     position: absolute;
     background-color: var(--details);
     border-radius:50%;
@@ -32,7 +31,7 @@ body{
     z-index: -1;
   }
 
-  h1 oorr{
+  span oorr{
     position: absolute;
     background-color: var(--details);
     border-radius:50%;
@@ -44,7 +43,7 @@ body{
 
   /* hoofd */
 
-  h1 {
+  span {
     position: absolute;
     background-color: var(--huid);
     box-shadow: inset -11px -16px 35px 0px #ba8b66;
@@ -127,7 +126,7 @@ body{
 
  
 /* zonnebril */
-  h1 ul{
+ span ul{
     margin:0;
     padding:0;
     list-style-type:"";
@@ -136,7 +135,7 @@ body{
     z-index: 2;
   }
 
-  h1 li{
+  span li{
     
     
     border-radius:50%;
@@ -206,3 +205,118 @@ body{
     translate: 0 16vmin;
     transform: rotate(-5deg);
   }
+
+
+
+
+  div{
+    z-index: 1;
+    position: absolute;
+    right:10vmin;
+    bottom:12vmin;
+
+  }
+
+
+
+  div ul li{
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    
+
+    input{
+      appearance:none;
+      font:inherit;
+      margin:0;
+      width: 4em;
+      height:4em;
+      margin:1em;
+      border-radius: 50%;
+      
+
+      &[value="oranje"]{
+        background-color: orange;
+        border:.5vmin solid #b2571a;
+       
+        &:checked{
+          background-color: darkorange;
+        }
+      }
+
+      &[value="roze"]{
+        background-color: pink;
+        border:.5vmin solid #c8557c;
+        &:checked{
+          background-color: palevioletred;
+        }
+      }
+
+      &[value="paars"]{
+        background-color: rgb(160, 84, 187);
+        border:.5vmin solid #681a85;
+        &:checked{
+          background-color: purple;
+        }
+      }
+
+    }
+
+  }
+
+  body:has(>div>ul>li>input[value="oranje"]:checked){
+    >span >ul >li{
+      border-color: orange;
+    }
+  }
+
+  body:has(>div>ul>li>input[value="roze"]:checked){
+    >span >ul >li{
+      border-color: pink;
+    }
+  }
+
+  body:has(>div>ul>li>input[value="paars"]:checked){
+    >span >ul >li{
+      border-color: rgb(160, 84, 187);
+    }
+  }
+
+  body > input[type="range"]{
+    z-index: 1;
+    position: absolute;
+    left:10vmin;
+    bottom:12vmin;
+    writing-mode: vertical-lr;
+    height:60%;
+  
+
+    appearance:none;
+
+    font:inherit;
+  
+    background-color:lightgrey;
+  
+
+  
+  border-radius:.5em;
+
+  }
+
+  ::-webkit-slider-runnable-track{
+  
+    /*   background-color:gold; */
+      height:1em;
+      
+    }
+    
+    ::-webkit-slider-thumb {
+      appearance:none;
+      width:2.5em;
+      height:2.5em;
+      background-color:grey;
+      border-radius:1em;
+      
+      translate:0 -.75em;
+      
+    }
