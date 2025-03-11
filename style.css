@@ -1,3 +1,19 @@
+.modak-regular {
+  font-family: "Modak", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.short-stack-regular {
+  font-family: "Short Stack", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+
+
+
 *, *::before, *::after {
     box-sizing:border-box;
 }
@@ -8,6 +24,7 @@
     --zonnebrildetail:#FF7C7C;
     --haarvoor:#55380D;
     --haarachter:#2C1D08;
+    /* --thermometer:linear-gradient(270deg, #ff6e7f 0%,#bfe9ff 100%); */
 }
 
 body{
@@ -16,7 +33,46 @@ body{
     display:grid;
     place-items:center;
     
-    background: radial-gradient(ellipse 55% 48% at 47% 81%, #eea2a2 0%,#bbc1bf 19%,#57c6e1 42%,#b49fda 79%,#7ac5d8 100%)  }
+}
+
+body>img{
+  width:100%;
+}
+
+h1{
+  z-index: 1;
+  position: absolute;
+  bottom: 75%;
+  font-family: "Modak", system-ui;
+  font-weight: 200;
+
+  font-size: 4rem;
+  color: #FF7C7C;;
+  text-shadow: 0 0 5px #ff005e, 0 0 10px #ff005e, 0 0 20px #ff005e, 0 0 40px #ff005e, 0 0 80px #ff005e;
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  0% {
+      text-shadow: 0 0 5px #f9a8c6, 0 0 10px #f9a8c6, 0 0 20px #f9a8c6, 0 0 40px #f9a8c6, 0 0 80px #f9a8c6;
+  }
+  100% {
+      text-shadow: 0 0 10px #9adeec, 0 0 20px #9adeec, 0 0 40px #9adeec, 0 0 80px #9adeec, 0 0 160px #9adeec;
+  }
+}
+/* h1{
+
+  z-index: 1;
+  position:absolute;
+  bottom:70%;
+  font-family: "Modak", system-ui;
+  font-weight: 200;
+  font-size: 5em;
+  color: #FF7C7C;
+
+} */
+
+
 
 
 
@@ -54,6 +110,7 @@ body{
     justify-content:center;
     place-items:center;
     align-content:center;
+    top:30%;
 
     transform-style: preserve-3d;
   }
@@ -213,7 +270,12 @@ body{
     z-index: 1;
     position: absolute;
     right:10vmin;
-    bottom:12vmin;
+    bottom:15vmin;
+    background-color: aliceblue;
+    border:.5vmin dotted #b2571a;
+    border-radius: 5em;
+    width: 16em;
+
 
   }
 
@@ -223,6 +285,9 @@ body{
     list-style-type: none;
     display: flex;
     align-items: center;
+    font-family: "Short Stack", cursive;
+    font-weight: 1000;
+   
     
 
     input{
@@ -236,7 +301,7 @@ body{
       
 
       &[value="oranje"]{
-        background-color: orange;
+        background-color: #ffa500;
         border:.5vmin solid #b2571a;
        
         &:checked{
@@ -245,7 +310,7 @@ body{
       }
 
       &[value="roze"]{
-        background-color: pink;
+        background-color: #ffc0cb;
         border:.5vmin solid #c8557c;
         &:checked{
           background-color: palevioletred;
@@ -253,7 +318,7 @@ body{
       }
 
       &[value="paars"]{
-        background-color: rgb(160, 84, 187);
+        background-color: #a054bb;
         border:.5vmin solid #681a85;
         &:checked{
           background-color: purple;
@@ -295,28 +360,28 @@ body{
 
     font:inherit;
   
-    background-color:lightgrey;
+    background-image:linear-gradient(180deg, #ff6e7f 0%,#bfe9ff 100%);
+    border:.9vmin solid rgb(86, 117, 138);
   
 
   
-  border-radius:.5em;
+  border-radius:3em;
 
   }
 
   ::-webkit-slider-runnable-track{
-  
-    /*   background-color:gold; */
+
       height:1em;
       
     }
     
     ::-webkit-slider-thumb {
       appearance:none;
-      width:2.5em;
-      height:2.5em;
-      background-color:grey;
+      width:1.9em;
+      height:2em;
+      background-color:rgb(86, 117, 138);
       border-radius:1em;
       
-      translate:0 -.75em;
+      translate:0 0em;
       
     }
