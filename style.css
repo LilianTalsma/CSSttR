@@ -24,7 +24,6 @@
     --zonnebrildetail:#FF7C7C;
     --haarvoor:#55380D;
     --haarachter:#2C1D08;
-    /* --thermometer:linear-gradient(270deg, #ff6e7f 0%,#bfe9ff 100%); */
 }
 
 body{
@@ -35,8 +34,8 @@ body{
     
 }
 
-body>img{
-  width:100%;
+body{
+  background: repeating-linear-gradient(173deg, #C6F6F9 0%,#EAECC6 100%)
 }
 
 h1{
@@ -99,7 +98,7 @@ h1{
 
   /* hoofd */
 
-  span {
+  span:nth-of-type(2) {
     position: absolute;
     background-color: var(--huid);
     box-shadow: inset -11px -16px 35px 0px #ba8b66;
@@ -347,25 +346,47 @@ h1{
     }
   }
 
-  body > input[type="range"]{
-    z-index: 1;
+  /* THERMOMETER */
+
+  body > span:nth-of-type(1){
+   
     position: absolute;
     left:10vmin;
     bottom:12vmin;
-    writing-mode: vertical-lr;
     height:60%;
-  
+    z-index: 2;
 
-    appearance:none;
 
-    font:inherit;
-  
-    background-image:linear-gradient(180deg, #ff6e7f 0%,#bfe9ff 100%);
-    border:.9vmin solid rgb(86, 117, 138);
-  
+    input[type="range"]{
 
-  
-  border-radius:3em;
+      writing-mode: vertical-lr;
+      height:100%;
+      appearance:none;
+      font:inherit;
+      background-image:linear-gradient(180deg, #FF5D3C 0%,#D4E5F9 100%);
+      border:1vmin solid #B0D2F9;
+      border-radius:1em;
+
+
+    }
+
+    >span{
+      position: relative;
+   
+
+    span{
+      position: absolute;
+      bottom:-1em;
+      left:50%;
+      translate:-50% 0;
+      height:3.5em;
+      width:3.5em;
+      border-radius: 50%;
+      z-index: -1;
+      background-color: #B0D2F9;
+      box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+    }
+  }
 
   }
 
@@ -377,11 +398,10 @@ h1{
     
     ::-webkit-slider-thumb {
       appearance:none;
-      width:1.9em;
-      height:2em;
-      background-color:rgb(86, 117, 138);
-      border-radius:1em;
-      
+      width:1.4em;
+      height:1em;
+      background-color:#80A8D6;
+      border-radius:0.2em;
       translate:0 0em;
       
     }
