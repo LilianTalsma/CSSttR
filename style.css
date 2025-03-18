@@ -24,6 +24,9 @@
     --zonnebrildetail:#FF7C7C;
     --haarvoor:#55380D;
     --haarachter:#2C1D08;
+
+    --active-background:dag;
+
 }
 
 body{
@@ -31,12 +34,73 @@ body{
     margin:0;
     display:grid;
     place-items:center;
-    
+    background: url(images/achtergronddag.png);
+    object-fit: cover;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    overflow: hidden;
 }
 
-body{
-  background: repeating-linear-gradient(173deg, #C6F6F9 0%,#EAECC6 100%)
+body > input[type="checkbox"]{
+    position: absolute;
+    right: -4em;
+    top:-4em;
+    appearance: none;
+    background-color: gold;
+    box-shadow: rgb(254, 230, 94) -5px 10px 20px;
+    border-radius: 50%;
+    width:13em;
+    height:13em;
+    z-index: 2;
+    cursor: pointer;
+
 }
+
+body:has( > input[type="checkbox"]:checked){
+    --active-background:nacht;
+    background: url(images/achtergrondnacht.png);
+    object-fit: cover;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    
+    >input[type="checkbox"]{
+        background-color: seashell;
+        box-shadow: rgb(199, 236, 255) -5px 10px 20px;
+    }
+
+    >span:nth-of-type(2){
+
+        background-color: #fdd6b5;
+        background-image: linear-gradient(0deg, #fdd6b5 27%, #84a4e4 68%);
+        box-shadow: inset -11px -16px 35px 0px #ba8b66;
+    }
+
+    >span aside{
+    background-image: linear-gradient(0deg, #fdd6b5 27%, #84a4e4 68%);
+    }
+
+    >span article{
+      height: 5vmin;
+      border-radius: 20px 20px 30px 30px;
+      translate: 0 16vmin;
+      transform: rotate(0deg);
+      animation: tilt-shaking .5s infinite alternate;
+    }
+
+
+
+}
+
+/* shaken animation van https://unused-css.com/blog/css-shake-animation/ */
+@keyframes tilt-shaking {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(5deg); }
+  50% { transform: rotate(0eg); }
+  75% { transform: rotate(-5deg); }
+  100% { transform: rotate(0deg); }
+}
+
+
 
 h1{
   z-index: 1;
@@ -76,7 +140,7 @@ h1{
 
 
 
-  span oorl{
+  span aside:nth-of-type(1){
     position: absolute;
     background-color: var(--details);
     border-radius:50%;
@@ -86,7 +150,7 @@ h1{
     z-index: -1;
   }
 
-  span oorr{
+  span aside:nth-of-type(2){
     position: absolute;
     background-color: var(--details);
     border-radius:50%;
@@ -251,7 +315,9 @@ h1{
     translate: 0 8vmin;
   }
 
-  mond{
+  /* mond */
+
+  article{
     display: block;
     position: absolute;
     background-color: var(--haarachter);
@@ -270,10 +336,10 @@ h1{
     position: absolute;
     right:10vmin;
     bottom:15vmin;
-    background-color: aliceblue;
+    /* background-color: aliceblue;
     border:.5vmin dotted #b2571a;
     border-radius: 5em;
-    width: 16em;
+    width: 16em; */
 
 
   }
@@ -286,6 +352,11 @@ h1{
     align-items: center;
     font-family: "Short Stack", cursive;
     font-weight: 1000;
+    background-color: rgb(255, 249, 180);
+    border:.5vmin solid #d5c130;
+    border-radius: 2em;
+    width: 15em;
+    margin:1em;
    
     
 
@@ -305,6 +376,7 @@ h1{
        
         &:checked{
           background-color: darkorange;
+          border:.8vmin dotted #5b2c0d;
         }
       }
 
@@ -313,6 +385,7 @@ h1{
         border:.5vmin solid #c8557c;
         &:checked{
           background-color: palevioletred;
+          border:.8vmin dotted #5b0d1f;
         }
       }
 
@@ -321,6 +394,7 @@ h1{
         border:.5vmin solid #681a85;
         &:checked{
           background-color: purple;
+          border:.8vmin dotted #cd9ee7;
         }
       }
 
@@ -328,19 +402,19 @@ h1{
 
   }
 
-  body:has(>div>ul>li>input[value="oranje"]:checked){
+  body:has([value="oranje"]:checked){
     >span >ul >li{
       border-color: orange;
     }
   }
 
-  body:has(>div>ul>li>input[value="roze"]:checked){
+  body:has([value="roze"]:checked){
     >span >ul >li{
       border-color: pink;
     }
   }
 
-  body:has(>div>ul>li>input[value="paars"]:checked){
+  body:has([value="paars"]:checked){
     >span >ul >li{
       border-color: rgb(160, 84, 187);
     }
@@ -366,8 +440,52 @@ h1{
       background-image:linear-gradient(180deg, #FF5D3C 0%,#D4E5F9 100%);
       border:1vmin solid #B0D2F9;
       border-radius:1em;
+      --width-track:calc(var(--width-range) - var(--size-thumb));
+	
+	--min: attr(min type(<number>), 0);
+	--max: attr(max type(<number>), 100);
+	--range: calc( var(--max) - var(--min) );
+	
+	--step: attr(step type(<number>), 1);
+	
+	--steps:calc( var(--range) / var(--step) );
+	
+	appearance:none;
+	font:inherit;
 
 
+    }
+
+    input::after {
+      position:absolute;
+      transform: rotate(90deg);
+      margin-left:5em;
+      /* margin-top: 3em; */
+      counter-reset: num var(--slider);
+      content: counter(num);
+      
+      
+      background-color:white;
+      padding:.25em .5em;
+      min-width:3em;
+      min-height:3em;
+      text-align:center;
+      padding-bottom:.5em;
+      
+      position-anchor:--thumb;
+      position-area:top span-all;
+      translate:0 calc( (var(--height-range) - var(--size-thumb)) * .5);
+      inset: 0 -4em;
+      
+      clip-path:polygon(
+        0 0, 
+        100% 0, 
+        100% calc(100% - .5em),
+        calc(50% + .25em) calc(100% - .5em),
+        50% 100%,
+        calc(50% - .25em) calc(100% - .5em),
+        0  calc(100% - .5em)
+      );
     }
 
     >span{
@@ -392,7 +510,8 @@ h1{
 
   ::-webkit-slider-runnable-track{
 
-      height:1em;
+      
+      height:var(--height-range);
       
     }
     
@@ -403,5 +522,23 @@ h1{
       background-color:#80A8D6;
       border-radius:0.2em;
       translate:0 0em;
+      translate:0 calc( (var(--height-range) - var(--size-thumb)) * .5);
+	
+      anchor-name:--thumb;
       
+    }
+
+    ::-moz-range-thumb {
+      appearance: none;
+      
+      width:var(--size-thumb);
+      aspect-ratio:1;
+
+      translate:0 calc( (var(--height-range) - var(--size-thumb)) * .5);
+    }
+
+
+    input:focus-visible {
+      outline:dotted .25em dodgerblue;
+      outline-offset:.5em;
     }
