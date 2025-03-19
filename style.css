@@ -14,6 +14,7 @@
 
 
 
+
 *, *::before, *::after {
     box-sizing:border-box;
 }
@@ -35,11 +36,15 @@ body{
     display:grid;
     place-items:center;
     background: url(images/achtergronddag.png);
-    object-fit: cover;
+    background-size: cover; /* Zorgt ervoor dat de achtergrondafbeelding schaalt */
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-attachment: fixed; 
     overflow: hidden;
+    transition: background .5s;
 }
+
+
+/* zon en maan en alles wat daarbij hoort */
 
 body > input[type="checkbox"]{
     position: absolute;
@@ -51,7 +56,7 @@ body > input[type="checkbox"]{
     border-radius: 50%;
     width:13em;
     height:13em;
-    z-index: 2;
+    z-index: 0;
     cursor: pointer;
 
 }
@@ -62,6 +67,7 @@ body:has( > input[type="checkbox"]:checked){
     object-fit: cover;
     background-repeat: no-repeat;
     background-size: 100%;
+    transition: background .5s;
     
     >input[type="checkbox"]{
         background-color: seashell;
@@ -77,6 +83,7 @@ body:has( > input[type="checkbox"]:checked){
 
     >span aside{
     background-image: linear-gradient(0deg, #fdd6b5 27%, #84a4e4 68%);
+    
     }
 
     >span article{
@@ -84,7 +91,8 @@ body:has( > input[type="checkbox"]:checked){
       border-radius: 20px 20px 30px 30px;
       translate: 0 16vmin;
       transform: rotate(0deg);
-      animation: tilt-shaking .5s infinite alternate;
+      animation: tilt-shaking .3s infinite alternate;
+      background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 29%, rgba(44,29,8,1) 29%, rgba(44,29,8,1) 79%, rgba(255,255,255,1) 79%, rgba(255,255,255,1) 100%);
     }
 
 
@@ -94,13 +102,14 @@ body:has( > input[type="checkbox"]:checked){
 /* shaken animation van https://unused-css.com/blog/css-shake-animation/ */
 @keyframes tilt-shaking {
   0% { transform: rotate(0deg); }
-  25% { transform: rotate(5deg); }
-  50% { transform: rotate(0eg); }
-  75% { transform: rotate(-5deg); }
+  25% { transform: rotate(3deg); }
+  50% { transform: rotate(0deg); }
+  75% { transform: rotate(-3deg); }
   100% { transform: rotate(0deg); }
 }
 
 
+/* vette titel */
 
 h1{
   z-index: 1;
@@ -108,34 +117,22 @@ h1{
   bottom: 75%;
   font-family: "Modak", system-ui;
   font-weight: 200;
-
-  font-size: 4rem;
+  font-size:4rem;
   color: #FF7C7C;;
   text-shadow: 0 0 5px #ff005e, 0 0 10px #ff005e, 0 0 20px #ff005e, 0 0 40px #ff005e, 0 0 80px #ff005e;
-  animation: glow 2s infinite alternate;
+  animation: glow 2s infinite alternate, ademen 4s infinite alternate;
 }
 
 @keyframes glow {
   0% {
+      color:#9adeec;
       text-shadow: 0 0 5px #f9a8c6, 0 0 10px #f9a8c6, 0 0 20px #f9a8c6, 0 0 40px #f9a8c6, 0 0 80px #f9a8c6;
   }
   100% {
+      color:#FF7C7C;
       text-shadow: 0 0 10px #9adeec, 0 0 20px #9adeec, 0 0 40px #9adeec, 0 0 80px #9adeec, 0 0 160px #9adeec;
   }
 }
-/* h1{
-
-  z-index: 1;
-  position:absolute;
-  bottom:70%;
-  font-family: "Modak", system-ui;
-  font-weight: 200;
-  font-size: 5em;
-  color: #FF7C7C;
-
-} */
-
-
 
 
 
@@ -174,7 +171,7 @@ h1{
     place-items:center;
     align-content:center;
     top:30%;
-
+    scale:0.7;
     transform-style: preserve-3d;
   }
 
@@ -204,12 +201,8 @@ h1{
     section:nth-of-type(1) p:nth-of-type(2){
       display: block;
       position: absolute;
-      /* left:50%; */
-      /* top:50%; */
-      /* translate: -50% -50%; */
       height:80vmin;
       width: 50vmin;
-      /* z-index: -1; */
       background-color: var(--haarachter);
       border-radius: 48%;
       transform: translateY(17%) rotate(135deg) translateZ(-1em);
@@ -296,11 +289,6 @@ h1{
 
   
 
-  /* li:hover{
-    transition: all 0.5s;
-    /* background-image: linear-gradient(58deg, rgba(0,0,0,1) 27%, rgba(159,159,159,1) 27%, rgba(159,159,159,1) 40%, rgba(0,0,0,1) 40%, rgba(0,0,0,1) 62%, rgba(159,159,159,1) 62%, rgba(159,159,159,1) 71%, rgba(0,0,0,1) 71%); */
-  
-  
 
   neus{
     display:block;
@@ -330,17 +318,13 @@ h1{
 
 
 
-
+/* bedieningspaneel van de zonne brillie */
   div{
     z-index: 1;
     position: absolute;
     right:10vmin;
-    bottom:15vmin;
-    /* background-color: aliceblue;
-    border:.5vmin dotted #b2571a;
-    border-radius: 5em;
-    width: 16em; */
-
+    bottom:8vmin;
+    scale:0.7;
 
   }
 
@@ -352,10 +336,10 @@ h1{
     align-items: center;
     font-family: "Short Stack", cursive;
     font-weight: 1000;
-    background-color: rgb(255, 249, 180);
-    border:.5vmin solid #d5c130;
-    border-radius: 2em;
-    width: 15em;
+    background-color: rgba(213, 248, 252, 0.83) ;
+    border:.4vmin solid #2686b6;
+    border-radius: 1.5em;
+    width: 12em;
     margin:1em;
    
     
@@ -364,8 +348,8 @@ h1{
       appearance:none;
       font:inherit;
       margin:0;
-      width: 4em;
-      height:4em;
+      width: 3em;
+      height:3em;
       margin:1em;
       border-radius: 50%;
       
@@ -376,7 +360,7 @@ h1{
        
         &:checked{
           background-color: darkorange;
-          border:.8vmin dotted #5b2c0d;
+          border:.8vmin dashed #75cfe1;
         }
       }
 
@@ -385,7 +369,7 @@ h1{
         border:.5vmin solid #c8557c;
         &:checked{
           background-color: palevioletred;
-          border:.8vmin dotted #5b0d1f;
+          border:.8vmin dashed #75cfe1;
         }
       }
 
@@ -394,7 +378,7 @@ h1{
         border:.5vmin solid #681a85;
         &:checked{
           background-color: purple;
-          border:.8vmin dotted #cd9ee7;
+          border:.8vmin dashed #75cfe1;
         }
       }
 
@@ -434,10 +418,11 @@ h1{
     input[type="range"]{
 
       writing-mode: vertical-lr;
+      scale:-1;
       height:100%;
       appearance:none;
       font:inherit;
-      background-image:linear-gradient(180deg, #FF5D3C 0%,#D4E5F9 100%);
+      background-image:linear-gradient(180deg, #D4E5F9 0%,#FF5D3C 100%);
       border:1vmin solid #B0D2F9;
       border-radius:1em;
       --width-track:calc(var(--width-range) - var(--size-thumb));
@@ -467,7 +452,7 @@ h1{
       
       background-color:white;
       padding:.25em .5em;
-      min-width:3em;
+      /* min-width:3em; */
       min-height:3em;
       text-align:center;
       padding-bottom:.5em;
@@ -475,7 +460,7 @@ h1{
       position-anchor:--thumb;
       position-area:top span-all;
       translate:0 calc( (var(--height-range) - var(--size-thumb)) * .5);
-      inset: 0 -4em;
+      inset: -2em -3em;
       
       clip-path:polygon(
         0 0, 
@@ -542,3 +527,65 @@ h1{
       outline:dotted .25em dodgerblue;
       outline-offset:.5em;
     }
+
+
+
+
+@container style(--slider:30) {
+  span:nth-of-type(2){
+
+    background-color: #fdd6b5;
+    background-image: linear-gradient(0deg, #fdd6b5 27%, #f58d8d 68%);
+    box-shadow: inset -11px -16px 35px 0px #ba8b66;
+  }
+
+    aside{
+      background-image: linear-gradient(0deg, #fdd6b5 27%, #f58d8d 68%);
+      
+      }
+  
+      article{
+        height: 5vmin;
+        width:3em;
+        border-radius: 20px 20px 30px 30px;
+        translate: 0 16vmin;
+        transform: rotate(0deg);
+        background: radial-gradient(at 50% bottom, rgba(255,93,60,1) 35%, rgba(44,29,8,1) 35%);
+        animation: ademen 1s infinite alternate;
+      }
+}
+
+@keyframes ademen{
+  0%{
+    transform: scale(1);
+  }
+  50%{
+    transform: scale(1.2);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+
+@container style(--slider:0) {
+  span:nth-of-type(2){
+
+    background-color: #fdd6b5;
+    background-image: linear-gradient(0deg, #fdd6b5 27%, #84a4e4 68%);
+    box-shadow: inset -11px -16px 35px 0px #ba8b66;
+  }
+
+    aside{
+      background-image: linear-gradient(0deg, #fdd6b5 27%, #84a4e4 68%);
+      
+      }
+  
+      article{
+        height: 5vmin;
+        border-radius: 20px 20px 30px 30px;
+        translate: 0 16vmin;
+        transform: rotate(0deg);
+        animation: tilt-shaking .3s infinite alternate;
+        background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 29%, rgba(44,29,8,1) 29%, rgba(44,29,8,1) 79%, rgba(255,255,255,1) 79%, rgba(255,255,255,1) 100%);
+      }
+}
