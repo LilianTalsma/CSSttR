@@ -1,3 +1,7 @@
+/* //////////// */
+/*🫸🏼LETTERTYPES🫷🏼*/
+/* //////////// */
+
 .modak-regular {
   font-family: "Modak", system-ui;
   font-weight: 400;
@@ -10,480 +14,522 @@
   font-style: normal;
 }
 
-
-
-
-
-
-*, *::before, *::after {
-    box-sizing:border-box;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-:root{
-    --huid:#FDD6B5;
-    --details:#EFC39E;
-    --zonnebrildetail:#FF7C7C;
-    --haarvoor:#55380D;
-    --haarachter:#2C1D08;
+:root {
+  --huid: #FDD6B5;
+  --details: #EFC39E;
+  --zonnebrildetail: #FF7C7C;
+  --haarvoor: #55380D;
+  --haarachter: #2C1D08;
 
-    --active-background:dag;
+  --active-background: dag;
+/* variabel die ik gebruik om de image van dag en nacht te veranderen als de checkbox actief is. */
+}
+
+/* //////////// */
+/*🫸🏼ACHTERGROND🫷🏼*/
+/* //////////// */
+
+body {
+  height: 100dvh;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  background: url(images/achtergronddag.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow: hidden;
+  transition: background .5s;
+}
+
+
+/* /////////////////////////////////////////// */
+/*🌞🌚ZON EN MAAN EN ALLES WAT DAARBIJHOORT🌞🌚*/
+/* /////////////////////////////////////////// */
+
+body>input[type="checkbox"] {
+  position: absolute;
+  right: -4em;
+  top: -4em;
+  appearance: none;
+  background-color: gold;
+  box-shadow: rgb(254, 230, 94) -5px 10px 20px;
+  border-radius: 50%;
+  width: 13em;
+  height: 13em;
+  z-index: 0;
+  cursor: pointer;
 
 }
 
-body{
-    height:100dvh;
-    margin:0;
-    display:grid;
-    place-items:center;
-    background: url(images/achtergronddag.png);
-    background-size: cover; /* Zorgt ervoor dat de achtergrondafbeelding schaalt */
-    background-repeat: no-repeat;
-    background-attachment: fixed; 
-    overflow: hidden;
-    transition: background .5s;
-}
+/* als de checkbox (zonnetje) active is word het nacht */
 
+body:has(> input[type="checkbox"]:checked) {
+  --active-background: nacht;
+  background: url(images/achtergrondnacht.png);
+  object-fit: cover;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  transition: background .5s;
 
-/* zon en maan en alles wat daarbij hoort */
+  >input[type="checkbox"] {
+    background-color: seashell;
+    box-shadow: rgb(199, 236, 255) -5px 10px 20px;
+  }
 
-body > input[type="checkbox"]{
-    position: absolute;
-    right: -4em;
-    top:-4em;
-    appearance: none;
-    background-color: gold;
-    box-shadow: rgb(254, 230, 94) -5px 10px 20px;
-    border-radius: 50%;
-    width:13em;
-    height:13em;
-    z-index: 0;
-    cursor: pointer;
+  /* aanpassingen die ook actief worden als de checkbox actief is, hoofd mond en oren. */
 
-}
+  >span:nth-of-type(2) {
 
-body:has( > input[type="checkbox"]:checked){
-    --active-background:nacht;
-    background: url(images/achtergrondnacht.png);
-    object-fit: cover;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    transition: background .5s;
-    
-    >input[type="checkbox"]{
-        background-color: seashell;
-        box-shadow: rgb(199, 236, 255) -5px 10px 20px;
-    }
-
-    >span:nth-of-type(2){
-
-        background-color: #fdd6b5;
-        background-image: linear-gradient(0deg, #fdd6b5 27%, #84a4e4 68%);
-        box-shadow: inset -11px -16px 35px 0px #ba8b66;
-    }
-
-    >span aside{
+    background-color: #fdd6b5;
     background-image: linear-gradient(0deg, #fdd6b5 27%, #84a4e4 68%);
-    
-    }
+    box-shadow: inset -11px -16px 35px 0px #ba8b66;
+  }
 
-    >span article{
-      height: 5vmin;
-      border-radius: 20px 20px 30px 30px;
-      translate: 0 16vmin;
-      transform: rotate(0deg);
-      animation: tilt-shaking .3s infinite alternate;
-      background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 29%, rgba(44,29,8,1) 29%, rgba(44,29,8,1) 79%, rgba(255,255,255,1) 79%, rgba(255,255,255,1) 100%);
-    }
+  >span aside {
+    background-image: linear-gradient(0deg, #fdd6b5 27%, #84a4e4 68%);
 
+  }
 
-
+  >span article {
+    height: 5vmin;
+    border-radius: 20px 20px 30px 30px;
+    translate: 0 16vmin;
+    transform: rotate(0deg);
+    animation: tilt-shaking .3s infinite alternate;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 29%, rgba(44, 29, 8, 1) 29%, rgba(44, 29, 8, 1) 79%, rgba(255, 255, 255, 1) 79%, rgba(255, 255, 255, 1) 100%);
+  }
 }
 
 /* shaken animation van https://unused-css.com/blog/css-shake-animation/ */
+/* animatie zodat de mond *bibberd* als het nacht is */
+
 @keyframes tilt-shaking {
-  0% { transform: rotate(0deg); }
-  25% { transform: rotate(3deg); }
-  50% { transform: rotate(0deg); }
-  75% { transform: rotate(-3deg); }
-  100% { transform: rotate(0deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(3deg);
+  }
+
+  50% {
+    transform: rotate(0deg);
+  }
+
+  75% {
+    transform: rotate(-3deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 
-/* vette titel */
+/* /////////////////// */
+/*🌞🌚VETTE TITEEEEL🌞🌚*/
+/* /////////////////// */
 
-h1{
+h1 {
   z-index: 1;
   position: absolute;
   bottom: 75%;
   font-family: "Modak", system-ui;
   font-weight: 200;
-  font-size:5vw;
-  color: #FF7C7C;;
+  font-size: 5vw;
+  color: #FF7C7C;
+  ;
   text-shadow: 0 0 5px #ff005e, 0 0 10px #ff005e, 0 0 20px #ff005e, 0 0 40px #ff005e, 0 0 80px #ff005e;
   animation: glow 2s infinite alternate, ademen 4s infinite alternate;
 }
 
+/*animatie voor het vette discolampen effect op de titel */
+/* ik heb ook het effect ademen op de h1 gezet die ik ook heb gebruikt voor de mond als ze het warm heeft */
+
 @keyframes glow {
   0% {
-      color:#9adeec;
-      text-shadow: 0 0 5px #f9a8c6, 0 0 10px #f9a8c6, 0 0 20px #f9a8c6, 0 0 40px #f9a8c6, 0 0 80px #f9a8c6;
+    color: #9adeec;
+    text-shadow: 0 0 5px #f9a8c6, 0 0 10px #f9a8c6, 0 0 20px #f9a8c6, 0 0 40px #f9a8c6, 0 0 80px #f9a8c6;
   }
+
   100% {
-      color:#FF7C7C;
-      text-shadow: 0 0 10px #9adeec, 0 0 20px #9adeec, 0 0 40px #9adeec, 0 0 80px #9adeec, 0 0 160px #9adeec;
+    color: #FF7C7C;
+    text-shadow: 0 0 10px #9adeec, 0 0 20px #9adeec, 0 0 40px #9adeec, 0 0 80px #9adeec, 0 0 160px #9adeec;
   }
 }
 
+/* ////////////////////////*/
+/*👂🏼👂🏼👂🏼👂🏼👂🏼👂🏼OREN👂🏼👂🏼👂🏼👂🏼👂🏼*/
+/* ///////////////////// */
 
-
-
-  span aside:nth-of-type(1){
-    position: absolute;
-    background-color: var(--details);
-    border-radius:50%;
-    width:13vmin;
-    height: 13vmin;
-    left: -9vmin;
-    z-index: -1;
-  }
-
-  span aside:nth-of-type(2){
-    position: absolute;
-    background-color: var(--details);
-    border-radius:50%;
-    width:13vmin;
-    height: 13vmin;
-    left: 35vmin;
-    z-index: -1;
-  }
-
-  /* hoofd */
-
-  span:nth-of-type(2) {
-    position: absolute;
-    background-color: var(--huid);
-    box-shadow: inset -11px -16px 35px 0px #ba8b66;
-    border-radius:50%;
-    width:40vmin;
-    aspect-ratio:7/9;
-    display:grid;
-    justify-content:center;
-    place-items:center;
-    align-content:center;
-    top:30%;
-    scale:0.7;
-    transform-style: preserve-3d;
-  }
-
-  /* haar */
-  section:nth-of-type(1) {
-    transform-style: preserve-3d;
-
-    display:grid;
-    /* place-content:center; */
-    place-items: center;
-  }
-
-  section:nth-of-type(1) p{
-    display: block;
-    position: absolute;
-    /* left:50%; */
-    /* top:50%; */
-    /* translate: -50% -50%; */
-    height:80vmin;
-    width: 50vmin;
-    /* z-index: -1; */
-    background-color: var(--haarachter);
-    border-radius: 48%;
-    transform: translateY(17%) rotate(45deg) translateZ(-1em);
-    }
-
-    section:nth-of-type(1) p:nth-of-type(2){
-      display: block;
-      position: absolute;
-      height:80vmin;
-      width: 50vmin;
-      background-color: var(--haarachter);
-      border-radius: 48%;
-      transform: translateY(17%) rotate(135deg) translateZ(-1em);
-      }
-
-      section:nth-of-type(2){
-        display: block;
-        position: absolute;
-        left:80%;
-        top:12%;
-        translate: -50% -50%;
-        height:38vmin;
-        width: 23vmin;
-        background-color: var(--haarvoor);
-        border-radius: 48%;
-        transform: rotate(140deg);
-      }
-
-      section:nth-of-type(3){
-        display: block;
-        position: absolute;
-        left:23%;
-        top:15%;
-        translate: -50% -50%;
-        height:38vmin;
-        width: 23vmin;
-        background-color: var(--haarvoor);
-        border-radius: 48%;
-        transform: rotate(40deg);
-      }
-
-
-
-
- 
-/* zonnebril */
- span ul{
-    margin:0;
-    padding:0;
-    list-style-type:"";
-    display:flex;
-    width:43vmin;
-    z-index: 2;
-  }
-
-  span li{
-    
-    
-    border-radius:50%;
-    flex-basis:50%;
-    aspect-ratio:1;
-    border: 2.5vmin solid #FF7C7C;
-    
-    background-image: linear-gradient(
-			45deg,
-			black 40%,
-			silver 0 43%,
-			black 0 48%,
-			silver 0 54%,
-			black 0
-		);
-	
-	border-radius:50%;
-	
-	background-position:left bottom;
-	
-	background-size: 300% 300%;
-	
-	animation-name:reflectie;
-	animation-duration:2s;
-	animation-iteration-count:infinite;
-	animation-timing-function:linear;
+span aside:nth-of-type(1) {
+  position: absolute;
+  background-color: var(--details);
+  border-radius: 50%;
+  width: 13vmin;
+  height: 13vmin;
+  left: -9vmin;
+  z-index: -1;
 }
+
+span aside:nth-of-type(2) {
+  position: absolute;
+  background-color: var(--details);
+  border-radius: 50%;
+  width: 13vmin;
+  height: 13vmin;
+  left: 35vmin;
+  z-index: -1;
+}
+
+
+span:nth-of-type(2) {
+  position: absolute;
+  background-color: var(--huid);
+  box-shadow: inset -11px -16px 35px 0px #ba8b66;
+  border-radius: 50%;
+  width: 40vmin;
+  aspect-ratio: 7/9;
+  display: grid;
+  justify-content: center;
+  place-items: center;
+  align-content: center;
+  top: 30%;
+  scale: 0.9;
+  transform-style: preserve-3d;
+}
+
+/* ////////////////////////*/
+/*👩🏼‍🎤👩🏼‍🎤👩🏼‍🎤👩🏼‍🎤👩🏼‍🎤👩🏼‍🎤HAAR👩🏼‍🎤👩🏼‍🎤👩🏼‍🎤👩🏼‍🎤👩🏼‍🎤👩🏼‍🎤*/
+/* ///////////////////// */
+
+section:nth-of-type(1) {
+  transform-style: preserve-3d;
+  display: grid;
+  place-items: center;
+}
+
+section:nth-of-type(1) p {
+  display: block;
+  position: absolute;
+  height: 80vmin;
+  width: 50vmin;
+  background-color: var(--haarachter);
+  border-radius: 48%;
+  transform: translateY(17%) rotate(45deg) translateZ(-1em);
+}
+
+section:nth-of-type(1) p:nth-of-type(2) {
+  display: block;
+  position: absolute;
+  height: 80vmin;
+  width: 50vmin;
+  background-color: var(--haarachter);
+  border-radius: 48%;
+  transform: translateY(17%) rotate(135deg) translateZ(-1em);
+}
+
+section:nth-of-type(2) {
+  display: block;
+  position: absolute;
+  left: 80%;
+  top: 12%;
+  translate: -50% -50%;
+  height: 38vmin;
+  width: 23vmin;
+  background-color: var(--haarvoor);
+  border-radius: 48%;
+  transform: rotate(140deg);
+}
+
+section:nth-of-type(3) {
+  display: block;
+  position: absolute;
+  left: 23%;
+  top: 15%;
+  translate: -50% -50%;
+  height: 38vmin;
+  width: 23vmin;
+  background-color: var(--haarvoor);
+  border-radius: 48%;
+  transform: rotate(40deg);
+}
+
+/*ik vond het haar nog best een uitdaging, ik wistt eerst niet hoe ik dat voor elkaar moest krijgen,
+      maar had uiteindelijk 2 ovalen gebruikt en die met transform gerotate.  */
+
+
+/* ////////////////////////*/
+/*👃👃👃👃👃👃👃NEUS👃👃👃👃👃👃👃*/
+/* ///////////////////// */
+
+footer {
+  display: block;
+  background-color: var(--details);
+  border-radius: 50%;
+  width: 20%;
+  aspect-ratio: 3/2;
+  position: absolute;
+  translate: 0 8vmin;
+}
+
+/* ////////////////////////*/
+/*👄👄👄👄👄👄MOND👄👄👄👄👄👄*/
+/* ///////////////////// */
+
+article {
+  display: block;
+  position: absolute;
+  background-color: var(--haarachter);
+  width: 11vmin;
+  height: 3.5vmin;
+  border-radius: 20px 20px 120px 120px;
+  translate: 0 16vmin;
+  transform: rotate(-5deg);
+}
+
+/* ////////////////////////*/
+/*🕶️🕶️🕶️🕶️🕶️ZONNEBRIL🕶️🕶️🕶️🕶️🕶️*/
+/* ///////////////////// */
+
+span ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: "";
+  display: flex;
+  width: 43vmin;
+  z-index: 2;
+}
+
+span li {
+  border-radius: 50%;
+  flex-basis: 50%;
+  aspect-ratio: 1;
+  border: 2.5vmin solid #FF7C7C;
+
+  background-image: linear-gradient(45deg,
+      black 40%,
+      silver 0 43%,
+      black 0 48%,
+      silver 0 54%,
+      black 0);
+
+  border-radius: 50%;
+
+  background-position: left bottom;
+
+  background-size: 300% 300%;
+
+  animation-name: reflectie;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+/* de bril zijn 2 cirkels met een grote border, de reflectie heb ik samen met sanne gemaakt 
+in een workshop. de reflectie is een gradient die infinite van boven naar beneden word verplaats. */
 
 @keyframes reflectie {
-	0% {
-		background-position:left bottom;
-	}
-	100% {
-		background-position:right top;
-	}
+  0% {
+    background-position: left bottom;
+  }
+
+  100% {
+    background-position: right top;
+  }
 }
 
 
-  
+/* /////////////////////////////*/
+/*🕶️🕶️🕶️🕶️🕶️MENU ZONNEBRIL🕶️🕶️🕶️🕶️🕶️*/
+/* ///////////////////////////// */
+
+div {
+  z-index: 1;
+  position: absolute;
+  right: 10vmin;
+  bottom: 8vmin;
+
+}
 
 
-  neus{
-    display:block;
-    background-color: var(--details);
-    /* box-shadow: inset -11px -16px 35px 0px rgb(215, 183, 134); */
-    border-radius:50%;
-    width:20%;
-    aspect-ratio:3/2;
+div ul li {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  font-family: "Short Stack", cursive;
+  font-weight: 1000;
+  background-color: rgba(213, 248, 252, 0.83);
+  border: .4vmin solid #2686b6;
+  border-radius: 1.5em;
+  width: 16vw;
+  font-size: 1.3vw;
+  margin: 1em;
 
-    position:absolute;
-
-    translate: 0 8vmin;
-  }
-
-  /* mond */
-
-  article{
-    display: block;
-    position: absolute;
-    background-color: var(--haarachter);
-    width: 11vmin;
-    height: 3.5vmin;
-    border-radius: 20px 20px 120px 120px;
-    translate: 0 16vmin;
-    transform: rotate(-5deg);
-  }
+  input {
+    appearance: none;
+    font: inherit;
+    margin: 0;
+    width: 3em;
+    height: 3em;
+    margin: 1em;
+    border-radius: 50%;
 
 
+    &[value="oranje"] {
+      background-color: #ffa500;
+      border: .5vmin solid #b2571a;
 
-/* bedieningspaneel van de zonne brillie */
-  div{
-    z-index: 1;
-    position: absolute;
-    right:10vmin;
-    bottom:8vmin;
-    scale:0.7;
-
-  }
-
-
-
-  div ul li{
-    list-style-type: none;
-    display: flex;
-    align-items: center;
-    font-family: "Short Stack", cursive;
-    font-weight: 1000;
-    background-color: rgba(213, 248, 252, 0.83) ;
-    border:.4vmin solid #2686b6;
-    border-radius: 1.5em;
-    width: 12em;
-    margin:1em;
-   
-    
-
-    input{
-      appearance:none;
-      font:inherit;
-      margin:0;
-      width: 3em;
-      height:3em;
-      margin:1em;
-      border-radius: 50%;
-      
-
-      &[value="oranje"]{
-        background-color: #ffa500;
-        border:.5vmin solid #b2571a;
-       
-        &:checked{
-          background-color: darkorange;
-          border:.8vmin dashed #75cfe1;
-        }
+      &:checked {
+        background-color: darkorange;
+        border: .8vmin dashed #75cfe1;
       }
+    }
 
-      &[value="roze"]{
-        background-color: #ffc0cb;
-        border:.5vmin solid #c8557c;
-        &:checked{
-          background-color: palevioletred;
-          border:.8vmin dashed #75cfe1;
-        }
+    &[value="roze"] {
+      background-color: #ffc0cb;
+      border: .5vmin solid #c8557c;
+
+      &:checked {
+        background-color: palevioletred;
+        border: .8vmin dashed #75cfe1;
       }
+    }
 
-      &[value="paars"]{
-        background-color: #a054bb;
-        border:.5vmin solid #681a85;
-        &:checked{
-          background-color: purple;
-          border:.8vmin dashed #75cfe1;
-        }
+    &[value="paars"] {
+      background-color: #a054bb;
+      border: .5vmin solid #681a85;
+
+      &:checked {
+        background-color: purple;
+        border: .8vmin dashed #75cfe1;
       }
-
     }
 
   }
 
-  body:has([value="oranje"]:checked){
-    >span >ul >li{
-      border-color: orange;
-    }
+}
+
+/* Het bedieningspaneel van de zonnebril is een ul, ik heb elke kleur een andere value gegeven in de html waardoor ik de kan
+  aanspreken in de css. de verschillende kleuren heb ik genest zodat het overzichtelijk is en ik ze allemaal onder 1 kopje kan aanspreken.
+  als de radiobutton gecheckd is verander hij dus de kleur van het aangesproken element. */
+
+div label {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+div label:hover {
+  cursor: pointer;
+}
+
+body:has([value="oranje"]:checked) {
+  >span>ul>li {
+    border-color: orange;
+  }
+}
+
+body:has([value="roze"]:checked) {
+  >span>ul>li {
+    border-color: pink;
+  }
+}
+
+body:has([value="paars"]:checked) {
+  >span>ul>li {
+    border-color: rgb(160, 84, 187);
+  }
+}
+
+/* Hier laat ik zien met de :has selector ik de kleur verander. Dus als de body een element heeft met value="" en die gecheckt is
+  verander hij de span>ul>li (de zonnebril) in een andere kleur. */
+
+/* /////////////////////////////*/
+/*🌡🌡🌡🌡🌡🌡THERMOMETER🌡🌡🌡🌡🌡🌡🌡*/
+/* ///////////////////////////// */
+
+body>span:nth-of-type(1) {
+
+  position: absolute;
+  left: 10vmin;
+  bottom: 12vmin;
+  height: 60%;
+  z-index: 2;
+
+
+  input[type="range"] {
+
+    writing-mode: vertical-lr;
+    scale: -1;
+    height: 100%;
+    appearance: none;
+    font: inherit;
+    background-image: linear-gradient(180deg, #D4E5F9 0%, #FF5D3C 100%);
+    border: 1vmin solid #B0D2F9;
+    border-radius: 1em;
+    --width-track: calc(var(--width-range) - var(--size-thumb));
+
+    --min: attr(min type(<number>), 0);
+    --max: attr(max type(<number>), 100);
+    --range: calc(var(--max) - var(--min));
+
+    --step: attr(step type(<number>), 1);
+
+    --steps: calc(var(--range) / var(--step));
+
+    appearance: none;
+    font: inherit;
+
+
   }
 
-  body:has([value="roze"]:checked){
-    >span >ul >li{
-      border-color: pink;
-    }
-  }
-
-  body:has([value="paars"]:checked){
-    >span >ul >li{
-      border-color: rgb(160, 84, 187);
-    }
-  }
-
-  /* THERMOMETER */
-
-  body > span:nth-of-type(1){
-   
+  input::after {
     position: absolute;
-    left:10vmin;
-    bottom:12vmin;
-    height:60%;
-    z-index: 2;
+    transform: rotate(90deg);
+    margin-left: 5em;
+    counter-reset: num var(--slider);
+    content: counter(num);
 
 
-    input[type="range"]{
+    background-color: white;
+    padding: .25em .5em;
+    min-height: 3em;
+    text-align: center;
+    padding-bottom: .5em;
 
-      writing-mode: vertical-lr;
-      scale:-1;
-      height:100%;
-      appearance:none;
-      font:inherit;
-      background-image:linear-gradient(180deg, #D4E5F9 0%,#FF5D3C 100%);
-      border:1vmin solid #B0D2F9;
-      border-radius:1em;
-      --width-track:calc(var(--width-range) - var(--size-thumb));
-	
-	--min: attr(min type(<number>), 0);
-	--max: attr(max type(<number>), 100);
-	--range: calc( var(--max) - var(--min) );
-	
-	--step: attr(step type(<number>), 1);
-	
-	--steps:calc( var(--range) / var(--step) );
-	
-	appearance:none;
-	font:inherit;
+    position-anchor: --thumb;
+    position-area: top span-all;
+    translate: 0 calc((var(--height-range) - var(--size-thumb)) * .5);
+    inset: -2em -3em;
 
-
-    }
-
-    input::after {
-      position:absolute;
-      transform: rotate(90deg);
-      margin-left:5em;
-      /* margin-top: 3em; */
-      counter-reset: num var(--slider);
-      content: counter(num);
-      
-      
-      background-color:white;
-      padding:.25em .5em;
-      /* min-width:3em; */
-      min-height:3em;
-      text-align:center;
-      padding-bottom:.5em;
-      
-      position-anchor:--thumb;
-      position-area:top span-all;
-      translate:0 calc( (var(--height-range) - var(--size-thumb)) * .5);
-      inset: -2em -3em;
-      
-      clip-path:polygon(
-        0 0, 
-        100% 0, 
+    clip-path: polygon(0 0,
+        100% 0,
         100% calc(100% - .5em),
         calc(50% + .25em) calc(100% - .5em),
         50% 100%,
         calc(50% - .25em) calc(100% - .5em),
-        0  calc(100% - .5em)
-      );
-    }
+        0 calc(100% - .5em));
+  }
 
-    >span{
-      position: relative;
-   
-
-    span{
+  >span {
+    position: relative;
+    
+    span {
       position: absolute;
-      bottom:-1em;
-      left:50%;
-      translate:-50% 0;
-      height:3.5em;
-      width:3.5em;
+      bottom: -1em;
+      left: 50%;
+      translate: -50% 0;
+      height: 3.5em;
+      width: 3.5em;
       border-radius: 50%;
       z-index: -1;
       background-color: #B0D2F9;
@@ -491,101 +537,110 @@ h1{
     }
   }
 
+}
+
+::-webkit-slider-runnable-track {
+  height: var(--height-range);
+}
+
+::-webkit-slider-thumb {
+  appearance: none;
+  width: 1.4em;
+  height: 1em;
+  background-color: #80A8D6;
+  border-radius: 0.2em;
+  translate: 0 0em;
+  translate: 0 calc((var(--height-range) - var(--size-thumb)) * .5);
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
   }
 
-  ::-webkit-slider-runnable-track{
+  anchor-name:--thumb;
+}
 
-      
-      height:var(--height-range);
-      
-    }
-    
-    ::-webkit-slider-thumb {
-      appearance:none;
-      width:1.4em;
-      height:1em;
-      background-color:#80A8D6;
-      border-radius:0.2em;
-      translate:0 0em;
-      translate:0 calc( (var(--height-range) - var(--size-thumb)) * .5);
-	
-      anchor-name:--thumb;
-      
-    }
+::-moz-range-thumb {
+  appearance: none;
 
-    ::-moz-range-thumb {
-      appearance: none;
-      
-      width:var(--size-thumb);
-      aspect-ratio:1;
+  width: var(--size-thumb);
+  aspect-ratio: 1;
 
-      translate:0 calc( (var(--height-range) - var(--size-thumb)) * .5);
-    }
+  translate: 0 calc((var(--height-range) - var(--size-thumb)) * .5);
+}
 
+input:focus-visible {
+  outline: dotted .25em dodgerblue;
+  outline-offset: .5em;
+}
 
-    input:focus-visible {
-      outline:dotted .25em dodgerblue;
-      outline-offset:.5em;
-    }
-
-
-
+/* de stijling van thermometer heb ik helemaal zelf gedaan :) de werking niet helemaal, credits voor Sanne die ervoor heeft gezorgd dat 
+    hij ook echt werkt. We hebben wel samen in de workshop naar gekeken en ik heb veel nieuws geleerd over bijv de thumb.
+    De tekst balon zit vast aan de thumb met een anchor waardoor hij mee blijft schalen. */
 
 @container style(--slider:30) {
-  span:nth-of-type(2){
+  span:nth-of-type(2) {
 
     background-color: #fdd6b5;
     background-image: linear-gradient(0deg, #fdd6b5 27%, #f58d8d 68%);
     box-shadow: inset -11px -16px 35px 0px #ba8b66;
   }
 
-    aside{
-      background-image: linear-gradient(0deg, #fdd6b5 27%, #f58d8d 68%);
-      
-      }
-  
-      article{
-        height: 5vmin;
-        width:3em;
-        border-radius: 20px 20px 30px 30px;
-        translate: 0 16vmin;
-        transform: rotate(0deg);
-        background: radial-gradient(at 50% bottom, rgba(255,93,60,1) 35%, rgba(44,29,8,1) 35%);
-        animation: ademen 1s infinite alternate;
-      }
+  aside {
+    background-image: linear-gradient(0deg, #fdd6b5 27%, #f58d8d 68%);
+
+  }
+
+  article {
+    height: 5vmin;
+    width: 3em;
+    border-radius: 20px 20px 30px 30px;
+    translate: 0 16vmin;
+    transform: rotate(0deg);
+    background: radial-gradient(at 50% bottom, rgba(255, 93, 60, 1) 35%, rgba(44, 29, 8, 1) 35%);
+    animation: ademen 1s infinite alternate;
+  }
 }
 
-@keyframes ademen{
-  0%{
+@keyframes ademen {
+  0% {
     transform: scale(1);
   }
-  50%{
+
+  50% {
     transform: scale(1.2);
   }
-  100%{
+
+  100% {
     transform: scale(1);
   }
 }
 
+/* Met de container-query pas je de "stijl" aan op basis van de waarde van de slider variabele
+als de waarde dus 30 is past hij de volgende dingen aan, gradient op de backgrount image van het hoofd
+ook veranderd de mond en pas ik een "ademende" animatie toe zodat het lijkt of ze hijgt. */
+
 @container style(--slider:0) {
-  span:nth-of-type(2){
+  span:nth-of-type(2) {
 
     background-color: #fdd6b5;
     background-image: linear-gradient(0deg, #fdd6b5 27%, #84a4e4 68%);
     box-shadow: inset -11px -16px 35px 0px #ba8b66;
   }
 
-    aside{
-      background-image: linear-gradient(0deg, #fdd6b5 27%, #84a4e4 68%);
-      
-      }
-  
-      article{
-        height: 5vmin;
-        border-radius: 20px 20px 30px 30px;
-        translate: 0 16vmin;
-        transform: rotate(0deg);
-        animation: tilt-shaking .3s infinite alternate;
-        background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 29%, rgba(44,29,8,1) 29%, rgba(44,29,8,1) 79%, rgba(255,255,255,1) 79%, rgba(255,255,255,1) 100%);
-      }
+  aside {
+    background-image: linear-gradient(0deg, #fdd6b5 27%, #84a4e4 68%);
+
+  }
+
+  article {
+    height: 5vmin;
+    border-radius: 20px 20px 30px 30px;
+    translate: 0 16vmin;
+    transform: rotate(0deg);
+    animation: tilt-shaking .3s infinite alternate;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 29%, rgba(44, 29, 8, 1) 29%, rgba(44, 29, 8, 1) 79%, rgba(255, 255, 255, 1) 79%, rgba(255, 255, 255, 1) 100%);
+  }
 }
+
+/* Bij de laagste waarde van de thermomet heb ik hetzelfde gedaan alleen anders gestijlt. */
