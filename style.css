@@ -117,7 +117,7 @@ h1{
   bottom: 75%;
   font-family: "Modak", system-ui;
   font-weight: 200;
-  font-size:4rem;
+  font-size:5vw;
   color: #FF7C7C;;
   text-shadow: 0 0 5px #ff005e, 0 0 10px #ff005e, 0 0 20px #ff005e, 0 0 40px #ff005e, 0 0 80px #ff005e;
   animation: glow 2s infinite alternate, ademen 4s infinite alternate;
