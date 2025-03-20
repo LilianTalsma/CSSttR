@@ -72,10 +72,10 @@ body>input[type="checkbox"] {
 
 body:has(> input[type="checkbox"]:checked) {
   --active-background: nacht;
-  background: url(images/achtergrondnacht.png);
+  background-image: url(images/achtergrondnacht.png);
   object-fit: cover;
-  background-repeat: no-repeat;
-  background-size: 100%;
+  /* background-repeat: no-repeat; */
+  /* background-size: 100%; */
   transition: background .5s;
 
   >input[type="checkbox"] {
@@ -522,7 +522,7 @@ body>span:nth-of-type(1) {
 
   >span {
     position: relative;
-    
+
     span {
       position: absolute;
       bottom: -1em;
